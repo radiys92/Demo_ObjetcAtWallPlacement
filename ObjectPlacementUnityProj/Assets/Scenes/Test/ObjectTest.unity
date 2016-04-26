@@ -185,18 +185,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11405930, guid: 4e03e7683b079914199ea125450e8416, type: 2}
-      propertyPath: Animator
-      value: 
-      objectReference: {fileID: 1705816119}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e03e7683b079914199ea125450e8416, type: 2}
   m_IsPrefabParent: 0
---- !u!95 &1705816119 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 9581972, guid: 4e03e7683b079914199ea125450e8416,
-    type: 2}
-  m_PrefabInternal: {fileID: 1705816118}
 --- !u!1 &2027408711
 GameObject:
   m_ObjectHideFlags: 0
