@@ -73,5 +73,10 @@ public class AnimatedObjectController : MonoBehaviour, IObjectController
 		}
 	}
 
-	#endregion
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
+    #endregion
 }
