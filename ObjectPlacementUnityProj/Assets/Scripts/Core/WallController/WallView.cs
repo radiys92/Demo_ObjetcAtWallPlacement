@@ -8,6 +8,12 @@ public class WallView : MonoBehaviour
 
     WallSettings _settings;
 
+    public bool RotateCamera
+    {
+        get { return CameraControls.EnableMoving; }
+        set { CameraControls.EnableMoving = value; }
+    }
+
     void Start()
     {
         _settings = GetComponent<WallSettings>();

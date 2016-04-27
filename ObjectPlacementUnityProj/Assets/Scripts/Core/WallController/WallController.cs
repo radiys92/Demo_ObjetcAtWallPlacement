@@ -9,6 +9,9 @@ public class WallController : MonoBehaviour
     public WallPhysics WallPhysics;
     public WallView WallView;
 
+    public bool RotateCamera;
+    private Gesture _rotator;
+
     private void Start()
     {
         if (WallSettings == null)
@@ -17,5 +20,38 @@ public class WallController : MonoBehaviour
             WallPhysics = GetComponent<WallPhysics>();
         if (WallView == null)
             WallView = GetComponent<WallView>();
+
+        GestureController.OnGestureStart += OnGestureStart;
+        GestureController.OnGestureEnd += OnGestureEnd;
+    }
+
+    public void OnDestroy()
+    {
+        GestureController.OnGestureStart -= OnGestureStart;
+        GestureController.OnGestureEnd -= OnGestureEnd;
+    }
+
+    private void OnGestureStart(Gesture g)
+    {
+        if (RotateCamera)
+        {
+            if (_rotator == null)
+            {
+                WallView.RotateCamera = true;
+                _rotator = g;
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
+    private void OnGestureEnd(Gesture g)
+    {
+        if (_rotator == g)
+        {
+            WallView.RotateCamera = false;
+            _rotator = null;
+        }
     }
 }
