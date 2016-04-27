@@ -54,6 +54,7 @@ public class WallController : MonoBehaviour
                 var controller = targets.collider.transform.GetComponentInParent<IObjectController>();
                 if (!_spawnedObjects.Contains(controller)) continue;
                 _moveTarget = controller;
+                _moveTarget.IsSelected = true;
                 _mover = g;
                 g.OnGestureStay += OnMoveGestureUpdate;
                 return;
@@ -63,6 +64,7 @@ public class WallController : MonoBehaviour
 
     private void OnMoveGestureUpdate(Gesture g)
     {
+        _moveTarget.IsMoving = true;
         WallPhysics.NavigateToPoint(_moveTarget.GetTransform(), WallView.ScreenToWorldPoint(g.EndPoint));
     }
 
@@ -75,6 +77,8 @@ public class WallController : MonoBehaviour
         }
         if (_mover == g)
         {
+            _moveTarget.IsSelected = false;
+            _moveTarget.IsMoving = false;
             _moveTarget = null;
             _mover = null;
         }
