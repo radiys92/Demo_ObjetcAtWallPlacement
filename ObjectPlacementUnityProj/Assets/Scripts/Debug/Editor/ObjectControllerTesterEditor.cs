@@ -1,23 +1,10 @@
-using System;
-using System.Globalization;
-using System.Linq;
 using UnityEngine;
 using UnityEditor;
-
-public enum States
-{
-    ABCDEF,
-    ACBDEF,
-    AdEXG,
-    bErDSa
-}
 
 [CustomEditor(typeof(ObjectControllerTester))]
 [CanEditMultipleObjects]
 public class ObjectControllerTesterEditor : Editor
 {
-    States _selected;
-
     public override void OnInspectorGUI()
     {
         if (!Application.isPlaying)
