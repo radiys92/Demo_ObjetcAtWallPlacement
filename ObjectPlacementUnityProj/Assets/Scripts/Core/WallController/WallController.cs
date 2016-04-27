@@ -13,7 +13,9 @@ public class WallController : MonoBehaviour
     public bool RotateCamera;
 
     private Gesture _rotator;
-    private List<Transform> _spawnedObjects = new List<Transform>();
+    private List<IObjectController> _spawnedObjects = new List<IObjectController>();
+    private IObjectController _moveTarget;
+    private Gesture _mover = null;
 
     private void Start()
     {
@@ -38,17 +40,32 @@ public class WallController : MonoBehaviour
     {
         if (RotateCamera)
         {
-            if (_rotator == null)
+            if (_rotator != null) return;
+            WallView.RotateCamera = true;
+            _rotator = g;
+            return;
+        }
+
+        if (_mover == null)
+        {
+            var something = WallView.CastScreenPoint(g.StartPoint);
+            foreach (var targets in something)
             {
-                WallView.RotateCamera = true;
-                _rotator = g;
-            }
-            else
-            {
+                var controller = targets.collider.transform.GetComponentInParent<IObjectController>();
+                if (!_spawnedObjects.Contains(controller)) continue;
+                _moveTarget = controller;
+                _mover = g;
+                g.OnGestureStay += OnMoveGestureUpdate;
                 return;
             }
         }
     }
+
+    private void OnMoveGestureUpdate(Gesture g)
+    {
+        WallPhysics.NavigateToPoint(_moveTarget.GetTransform(), WallView.ScreenToWorldPoint(g.EndPoint));
+    }
+
     private void OnGestureEnd(Gesture g)
     {
         if (_rotator == g)
@@ -56,12 +73,17 @@ public class WallController : MonoBehaviour
             WallView.RotateCamera = false;
             _rotator = null;
         }
+        if (_mover == g)
+        {
+            _moveTarget = null;
+            _mover = null;
+        }
     }
 
     public void SpawnObject()
     {
         Transform obj = Instantiate(App.Instance.SelectedPrefab).transform;
-        _spawnedObjects.Add(obj);
-        WallPhysics.SetToPivot(obj, new Vector2(.5f, .5f));
+        _spawnedObjects.Add(obj.GetComponent<IObjectController>());
+        WallPhysics.NavigateToPivot(obj, new Vector2(.5f, .5f));
     }
 }

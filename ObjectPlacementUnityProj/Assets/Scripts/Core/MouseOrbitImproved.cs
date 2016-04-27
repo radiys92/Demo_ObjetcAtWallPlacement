@@ -78,4 +78,9 @@ public class MouseOrbitImproved : MonoBehaviour
             angle -= 360F;
         return Mathf.Clamp(angle, min, max);
     }
+
+    public Camera GetCamera()
+    {
+        return GetComponent<Camera>();
+    }
 }

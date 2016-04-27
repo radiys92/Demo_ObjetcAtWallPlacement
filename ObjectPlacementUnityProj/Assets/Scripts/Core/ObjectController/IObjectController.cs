@@ -6,4 +6,5 @@ public interface IObjectController
 	bool IsEditing { get; set; }
 	bool IsMoving { get; set; }
 	bool IsSelected { get; set; }
+    Transform GetTransform();
 }

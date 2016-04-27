@@ -31,4 +31,18 @@ public class WallView : MonoBehaviour
         CameraControls.distance = (Screen.width/Screen.height > _settings.Height / _settings.Width ? _settings.Height : _settings.Width)*1.5f;
         CameraControls.UpdatePosition();
     }
+
+    public RaycastHit[] CastScreenPoint(Vector2 screentPoint)
+    {
+        var cam = CameraControls.GetCamera();
+        var ray = cam.ScreenPointToRay(screentPoint);
+        return Physics.BoxCastAll(ray.origin, Vector3.one/4, ray.direction);
+    }
+
+    public Vector3 ScreenToWorldPoint(Vector2 screentPoint)
+    {
+        var cam = CameraControls.GetCamera();
+        var ray = cam.ScreenPointToRay(screentPoint);
+        return ray.origin - ray.direction*ray.origin.z;
+    }
 }
