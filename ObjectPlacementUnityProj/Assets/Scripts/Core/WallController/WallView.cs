@@ -28,7 +28,7 @@ public class WallView : MonoBehaviour
         var r = ViewTransform.GetComponent<Renderer>();
         if (_settings.WallMaterial != null)
             r.material = _settings.WallMaterial;
-        CameraControls.distance = _settings.Height;
+        CameraControls.distance = (Screen.width/Screen.height > _settings.Height / _settings.Width ? _settings.Height : _settings.Width)*1.5f;
         CameraControls.UpdatePosition();
     }
 }
