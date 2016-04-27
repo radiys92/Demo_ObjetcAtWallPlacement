@@ -34,5 +34,7 @@ public class ScenesManager
     public void CloseShop()
     {
         SceneManager.UnloadScene("Shop");
+        var wall = GameObject.FindObjectOfType<WallController>();
+        wall.SpawnObject();
     }
 }

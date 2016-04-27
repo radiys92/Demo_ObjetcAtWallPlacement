@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
+using UnityEngine;
 
 [RequireComponent(typeof(WallSettings))]
 [RequireComponent(typeof(WallPhysics))]
@@ -8,9 +10,10 @@ public class WallController : MonoBehaviour
     public WallSettings WallSettings;
     public WallPhysics WallPhysics;
     public WallView WallView;
-
     public bool RotateCamera;
+
     private Gesture _rotator;
+    private List<Transform> _spawnedObjects = new List<Transform>();
 
     private void Start()
     {
@@ -53,5 +56,12 @@ public class WallController : MonoBehaviour
             WallView.RotateCamera = false;
             _rotator = null;
         }
+    }
+
+    public void SpawnObject()
+    {
+        Transform obj = Instantiate(App.Instance.SelectedPrefab).transform;
+        _spawnedObjects.Add(obj);
+        WallPhysics.SetToPivot(obj, new Vector2(.5f, .5f));
     }
 }
