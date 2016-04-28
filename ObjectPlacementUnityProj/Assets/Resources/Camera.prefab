@@ -92,12 +92,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnableMoving: 0
-  target: {fileID: 0}
-  distance: 5
-  xSpeed: 50
-  ySpeed: 50
-  yMinLimit: -20
-  yMaxLimit: 20
+  Target: {fileID: 0}
+  Distance: 5
+  XSpeed: 50
+  YSpeed: 50
+  YMinLimit: -20
+  YMaxLimit: 20
+  XMinLimit: -60
+  XMaxLimit: 60
 --- !u!124 &12424398
 Behaviour:
   m_ObjectHideFlags: 1

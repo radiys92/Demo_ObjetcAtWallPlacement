@@ -8,49 +8,45 @@ using System.Collections;
 public class MouseOrbitImproved : MonoBehaviour
 {
     public bool EnableMoving;
-    public Transform target;
-    public float distance = 5.0f;
-    public float xSpeed = 120.0f;
-    public float ySpeed = 120.0f;
+    public Transform Target;
+    public float Distance = 5.0f;
+    public float XSpeed = 50.0f;
+    public float YSpeed = 50.0f;
 
-    public float yMinLimit = -20f;
-    public float yMaxLimit = 80f;
+    public float YMinLimit = -20f;
+    public float YMaxLimit = 20f;
 
-    public float xMinLimit = -60;
-    public float xMaxLimit = 60f;
+    public float XMinLimit = -60;
+    public float XMaxLimit = 60f;
 
-//    public float distanceMin = .5f;
-//    public float distanceMax = 15f;
-
-    private Rigidbody rigidbody;
+    private Rigidbody _rigidbody;
 
     float x = 0.0f;
     float y = 0.0f;
 
-    // Use this for initialization
     void Start()
     {
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
 
-        rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
 
         // Make the rigid body not change rotation
-        if (rigidbody != null)
+        if (_rigidbody != null)
         {
-            rigidbody.freezeRotation = true;
+            _rigidbody.freezeRotation = true;
         }
     }
 
     void LateUpdate()
     {
-        if (!target || !EnableMoving) return;
+        if (!Target || !EnableMoving) return;
 
-        x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-        y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
-        x = ClampAngle(x, xMinLimit, xMaxLimit);
-        y = ClampAngle(y, yMinLimit, yMaxLimit);
+        x += Input.GetAxis("Mouse X") * XSpeed * Distance * 0.02f;
+        y -= Input.GetAxis("Mouse Y") * YSpeed * 0.02f;
+        x = ClampAngle(x, XMinLimit, XMaxLimit);
+        y = ClampAngle(y, YMinLimit, YMaxLimit);
         var rotation = Quaternion.Euler(y, x, 0);
         UpdatePosition(rotation);
     }
@@ -62,19 +58,14 @@ public class MouseOrbitImproved : MonoBehaviour
 
     private void UpdatePosition(Quaternion rotation)
     {
-//        RaycastHit hit;
-//        if (Physics.Linecast(target.position, transform.position, out hit))
-//        {
-//            distance -= hit.distance;
-//        }
-        Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-        Vector3 position = rotation * negDistance + target.position;
+        var negDistance = new Vector3(0.0f, 0.0f, -Distance);
+        var position = rotation * negDistance + Target.position;
 
         transform.rotation = rotation;
         transform.position = position;
     }
 
-    public static float ClampAngle(float angle, float min, float max)
+    private static float ClampAngle(float angle, float min, float max)
     {
         if (angle < -360F)
             angle += 360F;
