@@ -37,4 +37,10 @@ public class ScenesManager
         var wall = GameObject.FindObjectOfType<WallController>();
         wall.SpawnObject();
     }
+
+    public void SetControlsState(bool isCameraMoving)
+    {
+        var wall = GameObject.FindObjectOfType<WallController>();
+        wall.RotateCamera = isCameraMoving;
+    }
 }
