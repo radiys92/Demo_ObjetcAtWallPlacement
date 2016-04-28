@@ -151,7 +151,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Select object to place '
+  m_Text: 'Select product to place '
 --- !u!222 &463854260
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1415,7 +1415,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 789578824}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.2871992
+  m_Size: 0.18055822
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
