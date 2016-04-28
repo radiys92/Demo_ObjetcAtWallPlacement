@@ -96,4 +96,13 @@ public class WallController : MonoBehaviour
         _spawnedObjects.Add(obj.GetComponent<IObjectController>());
         WallPhysics.NavigateToPivot(obj, new Vector2(.5f, .5f));
     }
+
+    public void ClearWall()
+    {
+        foreach (var spawned in _spawnedObjects)
+        {
+            Destroy(spawned.GetTransform().gameObject);
+        }
+        _spawnedObjects.Clear();
+    }
 }

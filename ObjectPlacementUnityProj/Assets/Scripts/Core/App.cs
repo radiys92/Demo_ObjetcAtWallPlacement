@@ -49,4 +49,10 @@ public class ScenesManager
         var wall = GameObject.FindObjectOfType<WallController>();
         wall.IsMagnetEnabled = isMagnetEnable;
     }
+
+    public void ClearWall()
+    {
+        var wall = GameObject.FindObjectOfType<WallController>();
+        wall.ClearWall();
+    }
 }
