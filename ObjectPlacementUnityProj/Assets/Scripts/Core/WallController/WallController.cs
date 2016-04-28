@@ -17,6 +17,12 @@ public class WallController : MonoBehaviour
     private IObjectController _moveTarget;
     private Gesture _mover = null;
 
+    public bool IsMagnetEnabled
+    {
+        get { return WallPhysics.IsMagnetEnable; }
+        set { WallPhysics.IsMagnetEnable = value; }
+    }
+
     private void Start()
     {
         if (WallSettings == null)
