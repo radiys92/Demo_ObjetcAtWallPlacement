@@ -16,6 +16,9 @@ public class MouseOrbitImproved : MonoBehaviour
     public float yMinLimit = -20f;
     public float yMaxLimit = 80f;
 
+    public float xMinLimit = -60;
+    public float xMaxLimit = 60f;
+
 //    public float distanceMin = .5f;
 //    public float distanceMax = 15f;
 
@@ -46,6 +49,7 @@ public class MouseOrbitImproved : MonoBehaviour
 
         x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
         y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+        x = ClampAngle(x, xMinLimit, xMaxLimit);
         y = ClampAngle(y, yMinLimit, yMaxLimit);
         var rotation = Quaternion.Euler(y, x, 0);
         UpdatePosition(rotation);
