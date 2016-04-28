@@ -4,6 +4,7 @@ using UnityEngine;
 public class WallPhysics : MonoBehaviour
 {
     public Collider WallCollider;
+    public bool IsMagnetEnable = true;
 
     public void NavigateToPivot(Transform target, Vector2 pivot)
     {
@@ -26,8 +27,33 @@ public class WallPhysics : MonoBehaviour
         wallBounds.min += objBounds.extents;
         wallBounds.max -= objBounds.extents;
         var pos = wallBounds.ClosestPoint(point);
+        if (IsMagnetEnable)
+        {
+            pos = DoMagnet(wallBounds, pos);
+        }
         pos.z = wallBounds.min.z - objBounds.size.z;
         target.position = pos;
+    }
+
+    private Vector3 DoMagnet(Bounds bounds, Vector3 pos)
+    {
+        var c = bounds.center;
+        c.z = pos.z;
+        var e = bounds.extents;
+        List<Vector3> anchors = new List<Vector3>(new Vector3[]
+        {
+            c + new Vector3(0, 0, 0),
+            c + new Vector3(e.x, e.y, 0),
+            c + new Vector3(e.x, -e.y, 0), 
+            c + new Vector3(-e.x, e.y, 0),
+            c + new Vector3(-e.x, -e.y, 0),
+            c + new Vector3(e.x, 0, 0),
+            c + new Vector3(-e.x, 0, 0),
+            c + new Vector3(0, e.y, 0),
+            c + new Vector3(0, -e.y, 0),
+        });
+        anchors.Sort((a, b) => (int) (Vector3.SqrMagnitude(a - pos) - Vector3.SqrMagnitude(b - pos)));
+        return anchors[0];
     }
 
     private Bounds GetBounds(Transform target)

@@ -43,4 +43,10 @@ public class ScenesManager
         var wall = GameObject.FindObjectOfType<WallController>();
         wall.RotateCamera = isCameraMoving;
     }
+
+    public void SetMagnetEnable(bool isMagnetEnable)
+    {
+        var wall = GameObject.FindObjectOfType<WallController>();
+        wall.IsMagnetEnabled = isMagnetEnable;
+    }
 }
