@@ -11,10 +11,17 @@ internal class ObjectMoveWallState : IWallState
 
     public void Start()
     {
+        _mover = null;
+        _moveTarget = null;
     }
 
     public void Release()
     {
+        if (_moveTarget != null)
+        {
+            _moveTarget.IsSelected = false;
+            _moveTarget.IsMoving = false;
+        }
     }
 
     public void OnGestureStart(Gesture g)

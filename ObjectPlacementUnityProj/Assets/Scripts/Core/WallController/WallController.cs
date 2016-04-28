@@ -68,6 +68,7 @@ public class WallController : MonoBehaviour, IWallController
         _states.Add(WallState.CameraMove, new CameraMoveWallState(this));
         _states.Add(WallState.ObjectMove, new ObjectMoveWallState(this));
         _states.Add(WallState.ObjectSpawn, new ObjectSpawnWallState(this));
+        _states.Add(WallState.ObjectSelecting, new ObjectSelectingWallState(this));
         SetState(WallState.ObjectMove);
     }
 

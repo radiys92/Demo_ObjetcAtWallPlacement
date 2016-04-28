@@ -2,5 +2,6 @@ public enum WallState
 {
     CameraMove,
     ObjectMove,
-    ObjectSpawn
+    ObjectSpawn,
+    ObjectSelecting
 }

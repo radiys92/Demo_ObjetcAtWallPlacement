@@ -15,11 +15,12 @@ internal class ObjectSpawnWallState : IWallState
     public void Start()
     {
         _puttedPoints = 0;
-        Debug.Log("Place point 1");
+        App.Instance.ScenesManager.SetInfoCaption("Select point 1");
     }
 
     public void Release()
     {
+        App.Instance.ScenesManager.SetInfoCaption("");
     }
 
     public void OnGestureStart(Gesture g)
@@ -32,7 +33,7 @@ internal class ObjectSpawnWallState : IWallState
         }
         else
         {
-            Debug.Log("Place point 2");
+            App.Instance.ScenesManager.SetInfoCaption("Select point 2");
         }
     }
 
