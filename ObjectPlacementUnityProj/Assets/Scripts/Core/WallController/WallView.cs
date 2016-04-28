@@ -43,6 +43,7 @@ public class WallView : MonoBehaviour
     {
         var cam = CameraControls.GetCamera();
         var ray = cam.ScreenPointToRay(screentPoint);
-        return ray.origin - ray.direction*ray.origin.z;
+        var pos = ray.origin - ray.direction*(ray.origin.z/ray.direction.z);
+        return pos;
     }
 }
