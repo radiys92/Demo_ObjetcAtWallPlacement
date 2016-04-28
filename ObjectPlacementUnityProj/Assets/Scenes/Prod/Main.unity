@@ -1122,6 +1122,10 @@ Prefab:
       propertyPath: CameraControls
       value: 
       objectReference: {fileID: 1733040210}
+    - target: {fileID: 11443998, guid: 508924db7fdb0f94da287f65c08006cc, type: 2}
+      propertyPath: IsMagnetEnable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 508924db7fdb0f94da287f65c08006cc, type: 2}
   m_IsPrefabParent: 0

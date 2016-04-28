@@ -4,7 +4,7 @@ using UnityEngine;
 public class WallPhysics : MonoBehaviour
 {
     public Collider WallCollider;
-    public bool IsMagnetEnable = true;
+    public bool IsMagnetEnable = false;
 
     public void NavigateToPivot(Transform target, Vector2 pivot)
     {
