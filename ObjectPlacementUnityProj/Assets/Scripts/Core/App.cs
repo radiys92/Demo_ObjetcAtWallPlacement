@@ -35,13 +35,13 @@ public class ScenesManager
     {
         SceneManager.UnloadScene("Shop");
         var wall = GameObject.FindObjectOfType<WallController>();
-        wall.SpawnObject();
+        wall.SetState(WallState.ObjectSpawn);
     }
 
     public void SetControlsState(bool isCameraMoving)
     {
         var wall = GameObject.FindObjectOfType<WallController>();
-        wall.RotateCamera = isCameraMoving;
+        wall.SetState(isCameraMoving?WallState.CameraMove : WallState.ObjectMove);
     }
 
     public void SetMagnetEnable(bool isMagnetEnable)
