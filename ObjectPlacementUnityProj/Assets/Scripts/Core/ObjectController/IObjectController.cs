@@ -7,4 +7,5 @@ public interface IObjectController
 	bool IsMoving { get; set; }
 	bool IsSelected { get; set; }
     Transform GetTransform();
+    void SetScale(Vector2 scale);
 }

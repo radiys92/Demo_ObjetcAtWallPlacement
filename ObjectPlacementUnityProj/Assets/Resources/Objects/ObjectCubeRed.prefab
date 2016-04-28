@@ -150,6 +150,7 @@ MonoBehaviour:
   IsSelectedAnimatorParamName: IsSelected
   UpdateTriggerParamName: UpdateTrigger
   Animator: {fileID: 9532294}
+  VisualRoot: {fileID: 480048}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

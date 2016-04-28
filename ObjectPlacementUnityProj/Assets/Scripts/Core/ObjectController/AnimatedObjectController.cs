@@ -15,8 +15,9 @@ public class AnimatedObjectController : MonoBehaviour, IObjectController
 	private bool _isEditing;
 	private bool _isMoving;
 	private bool _isSelected;
+    public Transform VisualRoot;
 
-	private void Start()
+    private void Start()
 	{
 		if (!Animator) 
 		{
@@ -76,6 +77,13 @@ public class AnimatedObjectController : MonoBehaviour, IObjectController
     public Transform GetTransform()
     {
         return transform;
+    }
+
+    public void SetScale(Vector2 scale)
+    {
+        Vector3 visualScale = scale;
+        visualScale.z = 1;
+        VisualRoot.localScale = visualScale;
     }
 
     #endregion
