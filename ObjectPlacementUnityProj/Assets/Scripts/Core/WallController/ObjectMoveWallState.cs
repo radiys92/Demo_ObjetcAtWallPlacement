@@ -1,8 +1,11 @@
+using UnityEngine;
+
 internal class ObjectMoveWallState : IWallState
 {
     private IWallController _controller;
     private Gesture _mover;
     private IObjectController _moveTarget;
+    private Vector3 _offset;
 
     public ObjectMoveWallState(IWallController wallController)
     {
@@ -35,6 +38,7 @@ internal class ObjectMoveWallState : IWallState
             _moveTarget = controller;
             _moveTarget.IsSelected = true;
             _mover = g;
+            _offset = _controller.ScreenToWorldPoint(g.StartPoint) - controller.GetTransform().position;
             g.OnGestureStay += OnMoveGestureUpdate;
             return;
         }
@@ -42,7 +46,7 @@ internal class ObjectMoveWallState : IWallState
     private void OnMoveGestureUpdate(Gesture g)
     {
         _moveTarget.IsMoving = true;
-        _controller.NavigateToPoint(_moveTarget.GetTransform(), _controller.ScreenToWorldPoint(g.EndPoint));
+        _controller.NavigateToPoint(_moveTarget.GetTransform(), _controller.ScreenToWorldPoint(g.EndPoint) - _offset);
     }
 
     public void OnGestureEnd(Gesture g)
