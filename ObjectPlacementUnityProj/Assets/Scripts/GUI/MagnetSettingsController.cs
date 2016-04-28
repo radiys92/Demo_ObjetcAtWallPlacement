@@ -5,7 +5,7 @@ public class MagnetSettingsController : MonoBehaviour
 {
     public Text MagnetStateLabel;
 
-    private bool _isMagnetEnable = true;
+    private bool _isMagnetEnable = false;
 
     void Start()
     {

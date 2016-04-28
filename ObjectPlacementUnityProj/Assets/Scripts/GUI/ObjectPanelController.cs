@@ -11,6 +11,6 @@ public class ObjectPanelController : MonoBehaviour
 
     public void ClearObjectsButtonPress()
     {
-        throw new NotImplementedException();
+        App.Instance.ScenesManager.ClearWall();
     }
 }

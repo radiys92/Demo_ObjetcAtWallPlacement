@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WallCollider: {fileID: 6596016}
+  IsMagnetEnable: 0
 --- !u!114 &11468018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,6 +161,7 @@ MonoBehaviour:
   WallSettings: {fileID: 11468018}
   WallPhysics: {fileID: 11443998}
   WallView: {fileID: 11468670}
+  RotateCamera: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
